@@ -20,13 +20,12 @@ public class ProductController {
 
     @GetMapping("/search")
     public Page<Product> findProductsByPrecioAndTitulo(
-            @RequestParam(required = false) BigDecimal precio,
-            @RequestParam(required = false) String titulo,
+            @RequestParam(required = false) String parametro,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        return productService.findByPrecioAndTitulo(precio, titulo, pageRequest);
+        return productService.findByPrecioAndTitulo(parametro, pageRequest);
     }
 
     @GetMapping("/products")

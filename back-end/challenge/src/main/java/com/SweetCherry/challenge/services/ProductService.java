@@ -16,8 +16,8 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Page<Product> findByPrecioAndTitulo(BigDecimal precio, String titulo, Pageable pageable) {
-        return productRepository.findByPrecioAndTitulo(precio, titulo, pageable);
+    public Page<Product> findByPrecioAndTitulo(String parametro, Pageable pageable) {
+        return productRepository.findByPrecioOrTitulo(parametro, pageable);
     }
 
     public Page<Product> getAllProducts(int page, int size) {

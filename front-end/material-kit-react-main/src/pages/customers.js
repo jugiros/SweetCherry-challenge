@@ -48,7 +48,23 @@ const Page = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get(`${PRODUCT_SERVICE_URL}?page=${page}&size=${rowsPerPage}`);
+      const response = await axios.get(`${PRODUCT_SERVICE_URL}products?page=${page}&size=${rowsPerPage}`);
+      setData(response.data.content);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }, [page, rowsPerPage]);
+
+  const fetchDataSearch = useCallback(async (searchQuery) => {
+    try {
+      const response = await axios.get(`${PRODUCT_SERVICE_URL}search?page=${page}&size=${rowsPerPage}`, {
+        params: {
+          precio: searchQuery.precio,
+          titulo: searchQuery.titulo,
+          page,
+          size: rowsPerPage,
+        },
+      });
       setData(response.data.content);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -138,7 +154,7 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
-            <CustomersSearch />
+            <CustomersSearch onSearch={fetchDataSearch} />
             <CustomersTable
               count={data.length}
               items={customers}

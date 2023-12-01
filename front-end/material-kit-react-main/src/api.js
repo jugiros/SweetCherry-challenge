@@ -1,1 +1,1 @@
-export const PRODUCT_SERVICE_URL = 'http://localhost:8080/products/products';
+export const PRODUCT_SERVICE_URL = 'http://localhost:8080/products/';

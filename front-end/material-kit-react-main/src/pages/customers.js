@@ -57,14 +57,7 @@ const Page = () => {
 
   const fetchDataSearch = useCallback(async (searchQuery) => {
     try {
-      const response = await axios.get(`${PRODUCT_SERVICE_URL}search?page=${page}&size=${rowsPerPage}`, {
-        params: {
-          precio: searchQuery.precio,
-          titulo: searchQuery.titulo,
-          page,
-          size: rowsPerPage,
-        },
-      });
+      const response = await axios.get(`${PRODUCT_SERVICE_URL}search?parametro=${searchQuery}&page=${page}&size=${rowsPerPage}`);
       setData(response.data.content);
     } catch (error) {
       console.error('Error fetching data:', error);

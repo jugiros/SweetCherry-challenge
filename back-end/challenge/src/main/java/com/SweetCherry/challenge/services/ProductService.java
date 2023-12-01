@@ -6,13 +6,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
-    public Page<Product> findByPrecioAndTitulo(Product product, Pageable pageable) {
-        return productRepository.findByPrecioAndTitulo(product, pageable);
+    public Page<Product> findByPrecioAndTitulo(BigDecimal precio, String titulo, Pageable pageable) {
+        return productRepository.findByPrecioAndTitulo(precio, titulo, pageable);
     }
 }

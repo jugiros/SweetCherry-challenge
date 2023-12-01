@@ -3,10 +3,12 @@ import com.SweetCherry.challenge.models.Product;
 import com.SweetCherry.challenge.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -16,5 +18,10 @@ public class ProductService {
 
     public Page<Product> findByPrecioAndTitulo(BigDecimal precio, String titulo, Pageable pageable) {
         return productRepository.findByPrecioAndTitulo(precio, titulo, pageable);
+    }
+
+    public Page<Product> getAllProducts(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findAll(pageable);
     }
 }
